@@ -1,0 +1,1 @@
+return nn.Sequential():add(nn.Linear(4096,config.nClasses)):add(nn.LogSoftMax())
