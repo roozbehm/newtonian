@@ -4,8 +4,8 @@ config={};
 config.GPU  = 1
 config.nGPU = 1
 
-config.DataRootPath = "data"
-config.SaveRootPath = "data/logs"
+config.DataRootPath = "VIND"
+config.SaveRootPath = "logs"
 config.CacheRootPath = "cache"
 
 config.logDirectory = config.SaveRootPath .. '/' .. "LOG_" .. os.getenv('USER') .. "_" .. os.date():gsub(' ','-');
@@ -92,12 +92,12 @@ config.train = {
   nIter = 1000000,
 }
 
-valmeta = {
+vidvalmeta = {
   annotation = {
-    dir = config.DataRootPath .. "/val/labels",
+    dir = config.DataRootPath .. "/val_videos/labels",
   },
   image = {
-    dir       = config.DataRootPath .. "/val/images",
+    dir       = config.DataRootPath .. "/val_videos/images",
     nChannels = 3,
     type      = "png",
     suffix    = "im",
@@ -116,7 +116,7 @@ valmeta = {
     enable = false,
   },
   mask = {
-    dir       = config.DataRootPath .. "/val/objmask",
+    dir       = config.DataRootPath .. "/val_videos/objmask",
     nChannels = 1,
     type      = "png",
     suffix    = "mask",
@@ -124,7 +124,44 @@ valmeta = {
     std       = {},
     enable    = true,
   },
-  save_dir = config.CacheRootPath .. "/val_cache",
+  save_dir = config.CacheRootPath .. "/val_video_cache",
+  batch_size = 243,
+  nIter = 6,
+}
+
+imvalmeta = {
+  annotation = {
+    dir = config.DataRootPath .. "/val_images/labels",
+  },
+  image = {
+    dir       = config.DataRootPath .. "/val_images/images",
+    nChannels = 3,
+    type      = "png",
+    suffix    = "im",
+    mean      = {},
+    std       = {},
+    enable    = true,
+    croppable = true,
+  },
+  depth = {
+    enable = false,
+  },
+  normal = {
+    enable = false,
+  },
+  flow = {
+    enable = false,
+  },
+  mask = {
+    dir       = config.DataRootPath .. "/val_images/objmask",
+    nChannels = 1,
+    type      = "png",
+    suffix    = "mask",
+    mean      = {},
+    std       = {},
+    enable    = true,
+  },
+  save_dir = config.CacheRootPath .. "/val_images_cache",
   batch_size = 243,
   nIter = 6,
 }
@@ -162,10 +199,11 @@ testmeta = {
     enable    = true,
   },
   save_dir = config.CacheRootPath .. "/test_cache",
-  batch_size = 3,
+  batch_size = 1,
   nIter = 1,
 }
 
+valmeta = imvalmeta
 config.test = mode == 'train' and valmeta or testmeta
 config.classes = {'scenario11', 'scenario3', 'scenario10', 'scenario7', 'scenario6', 'scenario12', 'scenario9', 'scenario4', 'scenario1', 'scenario2', 'scenario8', 'scenario5'}
 config.class_angles= {3, 8, 8, 3, 3, 4, 8, 8, 8, 4, 8, 1};
