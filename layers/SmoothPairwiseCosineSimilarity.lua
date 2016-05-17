@@ -9,6 +9,8 @@ denominator of the cosine similarity function to remove the singularity when
 one of the inputs is zero. 
 --]]
 
+-- This file is a modified version of https://github.com/kaishengtai/torch-ntm/blob/master/layers/SmoothCosineSimilarity.lua
+
 local SmoothPairwiseCosineSimilarity, parent = torch.class('nn.SmoothPairwiseCosineSimilarity', 'nn.Module')
 
 function SmoothPairwiseCosineSimilarity:__init(smoothen)
