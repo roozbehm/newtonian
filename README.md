@@ -5,7 +5,7 @@ This is the source code for Newtonian Neural Networks N<sup>3</sup>, which predi
 If you find N<sup>3</sup> useful in your research, please consider citing:
 ```
 @inproceedings{mottaghiCVPR16N3,
-    Author = {Roozbeh Mottaghi and Hessam Bagherinezhad and Mohamamd Rastegari and Ali Farhadi},
+    Author = {Roozbeh Mottaghi and Hessam Bagherinezhad and Mohammad Rastegari and Ali Farhadi},
     Title = {Newtonian Image Understanding: Unfolding the Dynamics of Objects in Static Images},
     Booktitle = {CVPR},
     Year = {2016}
